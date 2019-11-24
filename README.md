@@ -5,6 +5,7 @@ This project has nothing to do with Cozmo, it is just in the same repository.
 play songs without pause, i.e. start the next song a few seconds before the current song ends
 
 optional arguments:
+
 *.  -h, --help            show this help message and exit
 *.  -p PATH, --path PATH  path to directory with audio files to play
 *.  -o OVERLAP, --overlap OVERLAP
