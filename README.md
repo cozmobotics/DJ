@@ -1,6 +1,6 @@
 # DJ
-This project has nothing to do with Cozmo, it is just in the same repository. 
 Play audio files, start the next song a few seconds before the current song ends - almost like a real DJ
+This project has nothing to do with Cozmo, it is just in the same repository. 
 
 play songs without pause, i.e. start the next song a few seconds before the current song ends
 
