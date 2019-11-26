@@ -50,7 +50,7 @@ parser.add_argument("-r", "--recursive", type=str, default="no",
 					help="recursively search path yes/no, default=no")
 args = parser.parse_args()
 
-extensions = [".mp3", ".wav", ".wma", ".flac"]
+extensions = [".mp3", ".wav", ".wma", ".flac", ".m4a"]
 
 files = []
 if (('y' in args.recursive) or ('Y' in args.recursive) or ('j' in args.recursive) or ('J' in args.recursive)):
