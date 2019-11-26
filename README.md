@@ -20,3 +20,5 @@ Then the current song will be played to the end, next song will not be started, 
 Press ^C again to stop the current song which will be faded out and the program ends. 
 
 Prerequisites: VLC media player and python-vlc (VLC python bindings) installed. Runs on Python2 and Python3. Currently it seems to run on Linux only, not on Windows. Tested with Mint 19.1 under Virtualbox 6.0.12 r133076 (Qt5.6.2) and VLC Media Player 3.0.4., Python 2.7.15rc1 and Python 3.6.7
+
+Credits: Thank you for mentioning the solution on stackoverflow https://stackoverflow.com/a/25899180/12436318
