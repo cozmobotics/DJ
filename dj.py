@@ -19,16 +19,21 @@
 	# interact with user while playing, this will work only with a GUI 
 		# interactions: pause/play, stop after current, stop with fadeout, insert a song after current song, progress bar
 
+import sys
+try:
+	import vlc
+except ImportError: 
+	print ("ERROR: module vlc not found. Please install it like this: pip3 install --user python-vlc")
+	sys.exit()
 
-import vlc
 import argparse
 from random import randrange, shuffle
 import os
 import time
-import sys
 
 import signal
 
+#--------------------------------------------------------------------------
 def keyboardInterruptHandler(signal, frame):
 	global Status
 	if (Status == "PLAY_LAST"):
@@ -38,7 +43,21 @@ def keyboardInterruptHandler(signal, frame):
 		Status = "PLAY_LAST"
 		print (" Stopping after current song, press ^C again for immediate stop")
 
+#-------------------------------------------------------------------------------
+def printProgress(Percentage):
 
+	# unfortunately, the next lines do not work under Python2 and I cannot circumvent a syntax error with this if-clause
+	# if (sys.version_info.major == 3):
+		# LineLength = 40
+		# Stars = int (LineLength * Percentage + 0.5)
+		# Stripes = LineLength - Stars
+		# ProgressString = '[' + '*' * Stars + '-' * Stripes + ']'
+		# print (ProgressString, end='\r')
+
+	pass
+
+
+#-------------------------------------------------------------------------------
 parser = argparse.ArgumentParser(description = "play songs without pause, i.e. start the next song a few seconds before the current song ends", epilog = "To stop playing, press ^C (Ctrl-C, Strg-C,..). Prerequisites: VLC media player and python-vlc (VLC python bindings) installed. Runs on Python2 and Python3. Currently it seems to run on Linux, not on Windows. ")
 parser.add_argument("-p", "--path", type=str, default=".",
 					help="path to directory with audio files to play")
@@ -79,7 +98,12 @@ if (NumFiles == 0):
 if (('y' in args.shuffle) or ('Y' in args.shuffle) or ('j' in args.shuffle) or ('J' in args.shuffle)):
 	shuffle (files)
 
-p1 = vlc.MediaPlayer("")
+try: 
+	p1 = vlc.MediaPlayer("")
+except NameError:
+	print ("ERROR: VLC Media player not found. Please install VLC Media Player.")
+	sys.exit()
+	
 p2 = vlc.MediaPlayer("")
 # State.Ended --- State.Playing
 
@@ -114,7 +138,8 @@ while (Status != "FINISH"):
 				Status = "PLAY_DOUBLE"
 			else:
 				Status = "PLAY_LAST"
-				
+		printProgress (PlayerCurrent.get_position())
+		
 	if (Status == "PLAY_DOUBLE"):
 		if (str(PlayerCurrent.get_state()) == "State.Ended"):
 			
@@ -127,10 +152,12 @@ while (Status != "FINISH"):
 				PlayerNext    = p1
 				
 			Status = "PLAY_SOLO"
+		printProgress (PlayerCurrent.get_position())
 
 	if (Status == "PLAY_LAST"):
 		if (str(PlayerCurrent.get_state()) == "State.Ended"):
 			Status = "FINISH"
+		printProgress (PlayerCurrent.get_position())
 	
 	if (Status == "FADEOUT"):
 		Volume = 100
