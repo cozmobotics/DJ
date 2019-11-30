@@ -19,6 +19,10 @@ To stop playing, press ^C (Ctrl-C, Strg-C,..).
 Then the current song will be played to the end, next song will not be started, and the program ends. 
 Press ^C again to stop the current song which will be faded out and the program ends. 
 
-Prerequisites: VLC media player and python-vlc (VLC python bindings) installed. Runs on Python2 and Python3. Currently it seems to run on Linux only, not on Windows. Tested with Mint 19.1 under Virtualbox 6.0.12 r133076 (Qt5.6.2) and VLC Media Player 3.0.4., Python 2.7.15rc1 and Python 3.6.7
+Prerequisites: VLC media player and python-vlc (VLC python bindings) installed. Runs on Python2 and Python3. Currently it seems to run on Linux only, not on Windows, see issues. 
+
+Tested with 
+* Mint 19.1 under Virtualbox 6.0.12 r133076 (Qt5.6.2) and VLC Media Player 3.0.4., Python 2.7.15rc1 and Python 3.6.7
+* Ubuntu 18.04 under Virtualbox 6.0.14 VLC Media Player 3.0.8, Python 3.6.9
 
 Credits: Thank you for mentioning the solution on stackoverflow https://stackoverflow.com/a/25899180/12436318
